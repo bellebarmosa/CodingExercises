@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+    float computeTotalCharges (int usage, int consumption);
+    
+    int main () {
+        
+        int qAircon, qFan, qTV, qRef;
+        int hAircon, hFan, hTV, hRef;
+        int qhAircon, qhFan, qhTV, qhRef;
+        float tCharges;
+        int usage,consumption;
+        const int kwhAircon=261, kwhFan=12, 
+        kwhTV=27, kwhRef=117, day=30;
+        
+        printf("Quantity of Aircon\n");
+        scanf("%d",&qAircon);
+        printf("Hours per day Usage\n");
+        scanf("%d",&hAircon);
+        printf("Quantity of Fan\n");
+        scanf("%d",&qFan);
+        printf("Hours per day Usage\n");
+        scanf("%d",&hFan);
+        printf("Quantity of TV\n");
+        scanf("%d",&qTV);
+        printf("Hours per day Usage\n");
+        scanf("%d",&hTV);
+          printf("Quantity of Refrigerator\n");
+        scanf("%d",&qRef);
+        printf("Hours per day Usage\n");
+        scanf("%d",&hRef);
+        
+        qhAircon = qAircon*hAircon;
+        qhFan = qFan*hFan;
+        qhTV = qTV*hTV;
+        qhRef = qRef*hRef;
+        
+        usage = (qhAircon+qhFan+qhTV+qhRef)*day;
+        consumption = ((qhAircon*kwhAircon)+(qhFan*kwhFan)+
+        (qhTV*kwhTV)+(qhRef*kwhRef))*day;
+        
+        tCharges = computeTotalCharges (usage,consumption);
+        
+        printf("Description \t\t Qty \t\t Hours/Day\n");
+        printf("Aircon \t\t %11d \t\t %9d\n", qAircon, hAircon);
+        printf("Fan \t\t %11d \t\t %9d\n", qFan, hFan);
+        printf("TV \t\t %11d \t\t %9d\n", qTV, hTV);
+        printf("Refrigerator \t %11d \t\t %9d\n\n", qRef, hRef);
+        printf("Total usage(hrs) \t\t\t %9d\n", usage);
+        printf("Total consumption(kwh) \t\t\t %9d\n", consumption);
+        printf("Total Charges: \t\t Pesos \t\t %9.2f\n", tCharges);
+        
+        return 0;
+        
+    }
+    
+     float computeTotalCharges (int usage, int consumption){
+        
+        float tCharges;
+        //tCharges = consumption*0.05;
+        (consumption>100000) ? tCharges=((consumption-100000)*0.03)+5000 
+        : tCharges == consumption*0.05;
+        
+        return tCharges;
+        
+    }
+    
